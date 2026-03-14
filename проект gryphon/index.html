@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FinLevel Prototype V4</title>
+    <meta
+      name="description"
+      content="A mobile-first fintech gaming prototype with personalized recommendations and accessible interactions."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app" aria-label="Financial growth dashboard prototype" data-animate-root>
+      
+
+     
+
+      <section class="screen home-screen is-active" data-screen="Home" aria-label="Home screen">
+<header class="home-topbar card glass reveal" data-reveal-order="1" data-home-topbar>
+        <p class="topbar-nickname" data-user-nickname>Username</p>
+        <button class="icon-button profile-avatar" aria-label="Profile" type="button" data-open-profile>
+          UN
+        </button>
+      </header>
+        <section class="level card reveal" aria-labelledby="level-heading" data-reveal-order="2">
+          <h2 id="level-heading" class="sr-only">Current Level</h2>
+
+          <button
+            class="level-module level-tone-neutral"
+            type="button"
+            aria-controls="financial-level-screen"
+            data-open-level-screen
+            data-level-module
+          >
+            <p class="level-module-label">Финансовый Уровень</p>
+
+            <span class="level-ring" data-level-ring aria-hidden="true"></span>
+
+            <span class="level-number-wrap">
+              <span class="level-center-value" data-financial-health-level>62</span>
+              <span class="level-loading-dot" data-level-loading-dot hidden aria-hidden="true"></span>
+            </span>
+
+            <span class="level-trend-chip" data-level-trend-chip>+3 в этом месяце</span>
+
+            
+          </button>
+
+          <p class="inline-warning" data-level-inline-warning hidden>
+            Couldn’t refresh. Showing last update.
+          </p>
+        </section>
+
+        <section
+          class="recommendations card reveal"
+          aria-labelledby="recommendations-heading"
+          data-reveal-order="3"
+        >
+          <h2 id="recommendations-heading" class="section-title">РЕКОМЕНДАЦИИ</h2>
+          <div id="recommendations-list" class="recommendations-list" aria-live="polite"></div>
+        </section>
+
+        <section class="jar card glass reveal" aria-labelledby="jar-heading" data-reveal-order="4">
+          
+        
+
+          <div class="jar-layout">
+            <div class="jar-shell" role="img" aria-label="Skill jar with glowing cards and 58 percent fill">
+              <div class="jar-lid" aria-hidden="true"></div>
+              <div class="jar-body">
+                <div class="jar-fill" data-jar-fill="58"></div>
+                <div class="jar-cards" aria-hidden="true">
+                  <span class="jar-card c1"></span>
+                  <span class="jar-card c2"></span>
+                  <span class="jar-card c3"></span>
+                  <span class="jar-card c4"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="jar-stats" aria-label="Skill card inventory summary">
+ <h2 id="jar-heading" class="section-title">НАВЫКАРИЙ</h2>
+              <article class="stat-card">
+                <p class="stat-label">Фрагменты</p>
+                <p class="stat-value" data-total-fragments>12</p>
+              </article>
+              <article class="stat-card">
+                <p class="stat-label">Карты</p>
+                <p class="stat-value" data-total-cards>5</p>
+              </article>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section
+        class="screen financial-level-screen"
+        data-screen="Financial Level"
+        aria-label="Financial Health Level details screen"
+        hidden
+        id="financial-level-screen"
+      >
+        <section class="card screen-card reveal" data-reveal-order="2" aria-labelledby="financial-level-heading">
+          <div class="screen-header-row">
+            <button class="icon-button" type="button" aria-label="Back to Home" data-back-home>←</button>
+            <h2 id="financial-level-heading" class="section-title">Financial Health Level 62</h2>
+          </div>
+
+          <p class="muted">Уровень отражает текущее состояние Вашего финансового состояния</p>
+          <article class="method-card trend-overview-card" data-overall-graph-card>
+            <div class="graph-header-row">
+              <p class="method-title">Динамика</p>
+              <button type="button" class="retry-link" data-retry-level-refresh>Обновить</button>
+            </div>
+
+            <div class="trend-filter-group" role="tablist" aria-label="Trend time range filters">
+              <button class="trend-filter" type="button" data-overall-range="1M" aria-pressed="false">1 месяц</button>
+              <button class="trend-filter is-active" type="button" data-overall-range="3M" aria-pressed="true">3 месяца</button>
+              <button class="trend-filter" type="button" data-overall-range="6M" aria-pressed="false">6 месяцев</button>
+              <button class="trend-filter" type="button" data-overall-range="12M" aria-pressed="false">1 год</button>
+            </div>
+
+            <div class="graph-stage" data-overall-graph-stage>
+              <div class="graph-loading" data-overall-graph-loading hidden aria-hidden="true"></div>
+
+              <p class="graph-empty" data-overall-graph-empty hidden>
+                Not enough data for this period yet. Add more entries to unlock trend insights.
+              </p>
+
+              <p class="graph-error" data-overall-graph-error hidden>
+                Couldn’t load trend data.
+                <button type="button" class="retry-link" data-retry-overall-graph>Retry</button>
+              </p>
+
+              <svg
+                class="trend-chart"
+                viewBox="0 0 100 36"
+                role="img"
+                aria-label="Financial Health Level trend graph"
+                data-overall-graph
+              >
+                <polyline data-overall-trend-line points="0,36 20,30 40,20 60,25 80,15 100,10"></polyline>
+              </svg>
+
+              <p class="graph-tooltip" data-overall-tooltip hidden></p>
+              <p class="sr-only" data-overall-tooltip-live aria-live="polite"></p>
+
+            </div>
+
+          </article>
+<p>Уровень формируется из индексов показателей, представленных ниже</p>
+
+
+          <section aria-label="Financial Health indicators" class="indicator-list" id="indicator-list"></section>
+        </section>
+      </section>
+
+
+      <section class="screen skill-cards-screen" data-screen="Skill Cards" aria-label="Skill Cards screen" hidden>
+        <section class="card screen-card reveal" data-reveal-order="2" aria-labelledby="skill-cards-heading">
+          <h2 id="skill-cards-heading" class="section-title">КАРТЫ НАВЫКОВ</h2>
+          <p class="muted">Отслеживайте фрагменты, повышения уровня и заблокированные карты</p>
+
+          <div class="skill-card-list">
+            <article class="skill-card-item" data-fragments="7" data-fragments-max="10">
+              <div class="skill-row">
+                <h3>Бюджетная дисциплина</h3>
+                <span class="tag">Ур. 4</span>
+              </div>
+              <p class="muted">Стабильность в соблюдении запланированных лимитов расходов</p>
+              <p class="fragment-count">Фрагменты: <strong>7/10</strong></p>
+              <div class="fragment-track" role="progressbar" aria-label="Budget Discipline fragments" aria-valuemin="0" aria-valuemax="10" aria-valuenow="7"></div>
+            </article>
+
+            <article class="skill-card-item" data-fragments="5" data-fragments-max="10">
+              <div class="skill-row">
+                <h3>Контроль долгов</h3>
+                <span class="tag">Ур. 3</span>
+              </div>
+              <p class="muted">Погашение задолженности с учётом процентной ставки и автоматической регулярностью</p>
+              <p class="fragment-count">Фрагменты: <strong>5/10</strong></p>
+              <div class="fragment-track" role="progressbar" aria-label="Debt Control fragments" aria-valuemin="0" aria-valuemax="10" aria-valuenow="5"></div>
+            </article>
+
+            <article class="skill-card-item" data-fragments="0" data-fragments-max="10">
+              <div class="skill-row">
+                <h3>Резервный фонд</h3>
+                <span class="tag">Ур. 2</span>
+              </div>
+              <p class="muted">Денежный запас для снижения рисков непредвиденных обстоятельств</p>
+              <p class="fragment-count">Фрагменты: <strong>0/10</strong></p>
+              <div class="fragment-track" role="progressbar" aria-label="Emergency Buffer fragments" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"></div>
+            </article>
+
+            <article class="skill-card-item" data-fragments="0" data-fragments-max="10" data-locked="true">
+              <div class="skill-row">
+                <h3>Диверсификация доходов</h3>
+                <span class="tag lock-tag">Закрыта</span>
+              </div>
+              <p class="muted">Откроется на 13-м уровне, открывая доступ к цепочке стратегий дополнительного заработка</p>
+              <p class="fragment-count">Фрагменты: <strong>0/10</strong></p>
+              <div class="fragment-track" role="progressbar" aria-label="Income Diversification fragments" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"></div>
+            </article>
+
+            <article class="skill-card-item" data-fragments="0" data-fragments-max="10" data-locked="true">
+              <div class="skill-row">
+                <h3>Налоговая оптимизация</h3>
+                <span class="tag lock-tag">Закрыта</span>
+              </div>
+              <p class="muted">Откроется на 14-м уровне после завершения двух продвинутых карточных цепочек</p>
+              <p class="fragment-count">Фрагменты: <strong>0/10</strong></p>
+              <div class="fragment-track" role="progressbar" aria-label="Tax Optimization fragments" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"></div>
+            </article>
+          </div>
+        </section>
+      </section>
+
+      <section class="screen team-screen" data-screen="Team" aria-label="Team screen" hidden>
+        <section class="card screen-card reveal" data-reveal-order="2" aria-labelledby="team-heading">
+          <h2 id="team-heading" class="section-title">КОМАНДА</h2>
+          <p class="muted">Вы не одни на пути к своей цели!</p>
+
+          <article class="team-goal-panel">
+                        <h3 class="team-goal-title">Создать 6-месячный резервный фонд и параллельно копить на первый взнос за квартиру</h3>
+            <p class="team-goal-progress">прогресс 70%</p>
+            <div class="progress team-progress" role="progressbar" aria-label="Team goal progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70" data-progress="70"><span></span></div>
+          </article>
+
+          <div class="team-list">
+            <article class="team-member team-member-highlight">
+              <div class="skill-row">
+                <p class="member-name">Ур. 62 · Вы</p>
+                <span class="tag">+5</span>
+              </div>
+                          </article>
+            <article class="team-member">
+              <div class="skill-row">
+                <p class="member-name">Ур. 72 · Анна</p>
+                <span class="tag">+12</span>
+              </div>
+                         </article>
+            <article class="team-member">
+              <div class="skill-row">
+                <p class="member-name">Ур. 64 · Макс</p>
+                <span class="tag">+3</span>
+              </div>
+                          </article>
+            <article class="team-member">
+              <div class="skill-row">
+                <p class="member-name">Ур. 81 · Ира</p>
+                <span class="tag">+9</span>
+              </div>
+                          </article>
+          </div>
+
+          <section class="challenge-block" aria-label="Team challenges">
+            <h3 class="section-title challenge-title">ИСПЫТАНИЯ</h3>
+            <article class="challenge-item">
+              <p class="challenge-name">"Сам себе повар" <span class="challenge-author">от Анны</span></p>
+              <div class="challenge-details">
+    <p><span class="detail-label">Цель</span> <span class="detail-value">неделя без доставки</span></p>
+        <p><span class="detail-label">Награда</span> <span class="detail-value">+35 XP</span></p>
+  </div>
+            </article>
+            <article class="challenge-item">
+              <p class="challenge-name">"Кофе из дома" <span class="challenge-author">от Системы</span></p>
+              <div class="challenge-details">
+    <p><span class="detail-label">Цель</span> <span class="detail-value">не покупать кофе 5 дней подряд</span></p>
+    <p><span class="detail-label">Награда</span> <span class="detail-value">+50 XP</span></p>
+      </div>
+            </article>
+          </section>
+        </section>
+      </section>
+
+      <section class="screen input-screen" data-screen="Input" aria-label="Input screen" hidden>
+        <section class="card screen-card reveal" data-reveal-order="2" aria-labelledby="input-heading">
+          <h2 id="input-heading" class="section-title">ВВОД</h2>
+          
+          <div class="input-methods" role="tablist" aria-label="Input methods">
+            
+            
+            <button class="method-chip is-active" type="button" data-method="quick" aria-pressed="true">Быстрый</button>
+<button class="method-chip" type="button" data-method="manual" aria-pressed="false">Ручной</button>
+<button class="method-chip" type="button" data-method="receipt" aria-pressed="false">Чек</button>
+          </div>
+
+          <div class="input-method-panel" data-method-panel="manual" hidden>
+            <form id="financial-input-form" class="input-form" novalidate>
+              
+
+<form class="manual-expense-form" id="manual-expense-form" novalidate>
+  
+    <input type="text" name="expenseDesc" maxlength="50" placeholder="покупка" required />
+       <input type="number" min="1" step="1" name="expenseAmount" placeholder="сумма" required />
+  
+  <div class="custom-select">
+  <button class="select-button" type="button">категория</button>
+  <ul class="select-options" hidden>
+    <li data-value="Food">Импульсивная покупка</li>
+    <li data-value="Drinks">Еда</li>
+    <li data-value="Transport">Напитки</li>
+    <li data-value="Entertainment">Развлечения</li>
+    
+  </ul>
+  <input type="hidden" name="quickCategory" value="">
+</div>   
+         
+  <button type="submit" class="action-button">Добавить покупку</button>
+
+                          </form>
+          </div>
+
+          <div class="input-method-panel" data-method-panel="receipt" hidden>
+            <article class="method-card">
+              
+              <p class="muted">Отсканируйте чек и он будет автоматически определен в категорию покупок</p>
+              <button type="button" class="action-button" data-receipt-capture>Сканировать</button>
+            </article>
+          </div>
+
+          <div class="input-method-panel" data-method-panel="quick">
+            <article class="method-card">
+              
+              
+              <div class="quick-buttons" data-quick-buttons></div>
+
+              <form class="quick-config-form" id="quick-config-form" novalidate>
+<p> </p>
+
+                                  
+                  <input type="text" name="quickLabel" maxlength="20" placeholder="покупка" required />
+               
+                                  
+                  <input type="number" min="1" step="1" name="quickAmount" placeholder="сумма" required />
+
+<div class="custom-select">
+  <button class="select-button" type="button">категория</button>
+  <ul class="select-options" hidden>
+    <li data-value="Food">Импульсивная покупка</li>
+    <li data-value="Drinks">Еда</li>
+    <li data-value="Transport">Напитки</li>
+    <li data-value="Entertainment">Развлечения</li>
+    
+  </ul>
+  <input type="hidden" name="quickCategory" value="">
+</div>                
+                <button type="submit" class="action-button">Добавить кнопку</button>
+              </form>
+            </article>
+          </div>
+
+          <p id="input-feedback" class="muted" aria-live="polite"></p>
+        </section>
+      </section>
+
+      <section class="screen profile-screen" data-screen="Profile" aria-label="Profile panel" hidden>
+        <section class="card screen-card glass reveal" data-reveal-order="2" aria-labelledby="profile-heading">
+          <h2 id="profile-heading" class="section-title">Профиль</h2>
+
+          <section class="profile-hero" data-profile-hero>
+            <div class="profile-banner banner-theme-1" data-banner></div>
+            <div class="profile-hero-content">
+              <div class="profile-avatar-large" aria-hidden="true">UN</div>
+              <div class="profile-meta">
+                <p class="profile-nickname" data-profile-nickname>Username</p>
+
+
+                <p class="profile-type">СТРАТЕГИЧЕСКИЙ ИНВЕСТОР</p>
+              </div>
+            </div>
+
+          </section>
+
+          
+           <div class="profile-stats-row">
+  <div class="stat-card health-index">
+    <span class="stat-label">УРОВЕНЬ</span>
+    <span class="stat-value">62</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-label">КАРТЫ НАВЫКОВ</span>
+    <span class="stat-value">0</span>
+  </div>
+</div>
+
+  
+  <div class="profile-achievements">
+    <h3 class="section-title">Достижения</h3>
+    <div class="achievements-list">
+      <span class="tag">Нет покупному кофе!</span>
+      <span class="tag">Копейка рубль бережет</span>
+          </div>
+  </div>
+
+  <!-- Друзья (список) -->
+  <div class="profile-friends">
+    <h3 class="section-title">Друзья</h3>
+    <div class="friends-list">
+      <div class="friend-item">
+        <span class="friend-name">Анна</span>
+        <span class="friend-level">Ур. 72</span>
+      </div>
+      <div class="friend-item">
+        <span class="friend-name">Макс</span>
+        <span class="friend-level">Ур. 64</span>
+      </div>
+      <div class="friend-item">
+        <span class="friend-name">Ира</span>
+        <span class="friend-level">Ур. 81</span>
+      </div>
+    </div>
+  </div>
+</section>
+      </section>
+
+      <nav class="bottom-nav card" aria-label="Primary navigation">
+        <button class="nav-item is-active" type="button" data-target-screen="Home">Главная</button>
+        <button class="nav-item" type="button" data-target-screen="Skill Cards">Навыки</button>
+        <button class="nav-item" type="button" data-target-screen="Team">Команда</button>
+        <button class="nav-item" type="button" data-target-screen="Input">Ввод</button>
+      </nav>
+    </main>
+
+    <div class="recommendation-modal" data-recommendation-modal hidden>
+      <div class="recommendation-modal-backdrop" data-close-recommendation-modal></div>
+      <section class="recommendation-modal-card card glass" role="dialog" aria-modal="true" aria-labelledby="recommendation-modal-title">
+        <button class="icon-button modal-close" type="button" aria-label="Close recommendation details" data-close-recommendation-modal>✕</button>
+        <h3 id="recommendation-modal-title" class="section-title" data-recommendation-title>Recommendation details</h3>
+        <p class="muted" data-recommendation-impact></p>
+        <p class="muted" data-recommendation-deadline></p>
+        <p class="muted" data-recommendation-rationale></p>
+        <p class="modal-xp" data-recommendation-xp></p>
+      </section>
+    </div>
+
+    <script src="app.js"></script>
+<script>
+  document.querySelectorAll('.challenge-item').forEach(item => {
+    item.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      
+      const isExpanded = item.classList.contains('is-expanded');
+      
+     
+      document.querySelectorAll('.challenge-item').forEach(other => {
+        other.classList.remove('is-expanded');
+      });
+      
+      
+      if (!isExpanded) {
+        item.classList.add('is-expanded');
+      }
+    });
+  });
+</script>
+  </body>
+</html>
